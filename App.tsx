@@ -1,32 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Signin from './components/signin';
+// App.tsx
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SignInScreen from './app/SignInScreen';
+import HomeScreen from './app/HomeScreen';
 
-const Stack = createStackNavigator();
+export type RootStackParamList = {
+  SignIn: undefined;
+  Home: undefined;
+};
 
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-
-function SigninScreen({ navigation }: { navigation: any }) {
+export default function App() {
   return (
-    <View style={styles.container}>
-      <Signin booleanToggle={(isLoggedIn: boolean) => {}} username="defaultUsername" setUsername={() => {}} />
-      <Text>Welcome! Login to access your account.</Text>
-      <TextInput placeholder="Username" value="defaultUsername" onChangeText={() => {}} />
-      <TextInput placeholder="Password" value="" onChangeText={() => {}} />
-      <Text onPress={() => navigation.navigate('Home')}>Login</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="SignIn"
+        screenOptions={{ headerShown: false }} 
+        >
+        <Stack.Screen name="SignIn" component={SignInScreen} />
+        <Stack.Screen 
+          name="Home" 
+          component={HomeScreen} 
+          options={{ headerShown: false }} 
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
