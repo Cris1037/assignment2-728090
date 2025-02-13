@@ -52,7 +52,7 @@ const Welcome: React.FC<WelcomeProps> = ({
 
       <Button title="Add preference" onPress={addPreference} />
     </View>
-  );
+  );kokosd
 };
 
 const styles = StyleSheet.create({
