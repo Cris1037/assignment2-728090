@@ -1,30 +1,22 @@
-// App.tsx
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SignInScreen from './app/SignInScreen';
-import HomeScreen from './app/HomeScreen';
-
-export type RootStackParamList = {
-  SignIn: undefined;
-  Home: undefined;
-};
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+import Login from './components/Login';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="SignIn"
-        screenOptions={{ headerShown: false }} 
-        >
-        <Stack.Screen name="SignIn" component={SignInScreen} />
-        <Stack.Screen 
-          name="Home" 
-          component={HomeScreen} 
-          options={{ headerShown: false }} 
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={styles.container}>
+      <Login />
+      <Text>Open up App.tsx to start working on your app!</Text>
+      <StatusBar style="auto" />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
